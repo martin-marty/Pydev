@@ -84,6 +84,14 @@ public class PoetryAction {
         return runCommand(new String[] { Commands.INSTALL.command() });
     }
 
+    public String sync() {
+        return runCommand(new String[] { Commands.SYNC.command() });
+    }
+
+    public String lock() {
+        return runCommand(new String[] { Commands.LOCK.command() });
+    }
+
     /**
      * Returns the output of running `poetry args...`
      * 
