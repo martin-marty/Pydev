@@ -66,7 +66,7 @@ public class PydevRootPrefs extends FieldEditorPreferencePage implements IWorkbe
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         }));
-        addField(new FileFieldEditor(POETRY_BIN, "\nPoetry path", p));
+        addField(new FileFieldEditor(POETRY_BIN, "Poetry path", p));
     }
 
     public static void setCheckPreferredPydevSettings(boolean b) {

@@ -37,7 +37,7 @@ public class PydevPrefsInitializer extends AbstractPreferenceInitializer {
         Preferences node = DefaultScope.INSTANCE.getNode(SharedCorePlugin.DEFAULT_PYDEV_PREFERENCES_SCOPE);
 
         node.putInt(IWizardNewProjectNameAndLocationPage.PYDEV_NEW_PROJECT_CREATE_PREFERENCES,
-                IWizardNewProjectNameAndLocationPage.PYDEV_NEW_PROJECT_CREATE_PROJECT_AS_SRC_FOLDER);
+                IWizardNewProjectNameAndLocationPage.PYDEV_NEW_PROJECT_CREATE_SRC_FOLDER);
 
         //comment blocks
         node.put(CommentBlocksPreferences.MULTI_BLOCK_COMMENT_CHAR,

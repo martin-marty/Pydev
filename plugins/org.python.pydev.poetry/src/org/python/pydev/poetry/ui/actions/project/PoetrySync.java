@@ -39,7 +39,6 @@ public class PoetrySync extends PyContainerAction {
         PoetryAction poetry = new PoetryAction(absPath.toString());
         poetry.sync();
         monitor.worked(50);
-        monitor.done();
         try {
             project.refreshLocal(1, monitor);
         } catch (CoreException e) {
@@ -47,6 +46,7 @@ public class PoetrySync extends PyContainerAction {
             e.printStackTrace();
         }
         monitor.worked(100);
+        monitor.done();
         return 0;
     }
 }

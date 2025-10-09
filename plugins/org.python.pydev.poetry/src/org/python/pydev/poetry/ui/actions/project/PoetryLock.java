@@ -35,7 +35,6 @@ public class PoetryLock extends PyContainerAction {
         PoetryAction poetry = new PoetryAction(absPath.toString());
         poetry.lock();
         monitor.worked(50);
-        monitor.done();
         try {
             project.refreshLocal(1, monitor);
         } catch (CoreException e) {
@@ -43,6 +42,7 @@ public class PoetryLock extends PyContainerAction {
             e.printStackTrace();
         }
         monitor.worked(100);
+        monitor.done();
         return 0;
     }
 
