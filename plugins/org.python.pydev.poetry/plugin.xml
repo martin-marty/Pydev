@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+         <objectContribution
+			adaptable="true"
+			id="org.python.pydev.poetry.ui.actions.project"
+			objectClass="org.eclipse.core.resources.IProject">
+             <menu id="org.python.pydev.poetry.ui.poetry.menu" label="Poetry" icon="icons/PythonPoetry.svg">
+                 <separator name="misc"/>
+             </menu>
+             <menu id="org.python.pydev.ui.actions.menu" label="PyDev"/>
+             <action
+                   class="org.python.pydev.poetry.ui.actions.project.PoetryInstallAction"
+                   enablesFor="1"
+                   id="org.python.pydev.poetry.ui.actions.project.poetryInstallAction"
+                   label="Poetry install"
+                   menubarPath="org.python.pydev.poetry.ui.poetry.menu/misc"
+                   tooltip="Install using poetry">
+             </action>
+             <action
+                   class="org.python.pydev.poetry.ui.actions.project.PoetryAddAction"
+                   enablesFor="1"
+                   id="org.python.pydev.poetry.ui.actions.project.poetryAddAction"
+                   label="Poetry add"
+                   menubarPath="org.python.pydev.poetry.ui.poetry.menu/misc"
+                   tooltip="Add package using poetry">
+             </action>
+             <visibility><objectState name="projectNature" value="org.python.pydev.pythonNature"/></visibility>
+          </objectContribution>
+         
+   </extension>
+
+</plugin>
