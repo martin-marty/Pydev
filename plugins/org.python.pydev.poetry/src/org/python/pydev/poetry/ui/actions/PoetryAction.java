@@ -3,6 +3,7 @@
  */
 package org.python.pydev.poetry.ui.actions;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,7 +45,8 @@ public class PoetryAction {
      */
     public PoetryAction(String projectRoot) {
         poetryBin = PydevPlugin.getDefault().getPreferenceStore().getString(PydevRootPrefs.POETRY_BIN);
-        if (poetryBin == null) {
+        File f = new File(poetryBin);
+        if (poetryBin == null | !(f.exists() && !f.isDirectory())) {
             errorTitle = "Poetry not configured";
             errorMsg = "The path to poetry could not be found.\n";
             errorMsg += "Please configure the poetry in";

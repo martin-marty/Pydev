@@ -1,4 +1,4 @@
-package org.python.pydev.poetry.ui.actions.project;
+package org.python.pydev.ui.actions.project;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,8 +18,9 @@ import org.python.pydev.core.IInterpreterInfo;
 import org.python.pydev.core.IInterpreterManager;
 import org.python.pydev.core.MisconfigurationException;
 import org.python.pydev.core.PythonNatureWithoutProjectException;
+import org.python.pydev.core.log.Log;
+import org.python.pydev.core.package_manager.PoetryPackageManager;
 import org.python.pydev.plugin.nature.PythonNature;
-import org.python.pydev.poetry.ui.actions.PoetryAction;
 import org.python.pydev.shared_ui.EditorUtils;
 import org.python.pydev.ui.actions.container.PyContainerAction;
 
@@ -53,17 +54,16 @@ public class PoetryInstallAction extends PyContainerAction {
         }
         project = container.getProject();
         absPath = project.getLocation();
-        PoetryAction poetry = new PoetryAction(absPath.toString());
-        String result = poetry.install();
+        PoetryPackageManager pm = new PoetryPackageManager(absPath.toString());
+        String result = pm.install();
         monitor.worked(50);
-        System.out.println("Result: " + result);
-        pythonBin = poetry.getPython();
-        System.out.println("Python found at: " + pythonBin);
+        Log.logInfo("Result: " + result);
+        pythonBin = pm.getPython();
+        Log.logInfo("Python found at: " + pythonBin);
         PythonNature nature = getNature();
         if (nature == null) {
             // This should never happen
         } else {
-            System.out.println("Nature: " + nature);
             setInterpreter(nature);
         }
         monitor.done();
@@ -85,34 +85,34 @@ public class PoetryInstallAction extends PyContainerAction {
         try {
             interpreter = nature.getProjectInterpreter();
             String name = interpreter.getName();
-            System.out.println("Name: " + name);
+            Log.logInfo("Name: " + name);
         } catch (MisconfigurationException e) {
             String missingInterpeter = "Interpreter: " + project.getName() + " not found";
             if (Objects.equals("Python not configured.", e.getMessage())) {
-                System.out.println("Misconfiguration error, no interpreters configured.");
+                Log.logInfo("Misconfiguration error, no interpreters configured.");
                 setDefaultInterpreter(nature);
             } else if (Objects.equals(missingInterpeter, e.getMessage().toString())) {
-                System.out.println("Misconfiguration error, project interpreter not configured.");
+                Log.logInfo("Misconfiguration error, project interpreter not configured.");
                 updateInterpererInfo(nature);
             } else {
-                System.out.println("Unknown error: Message: " + e.getMessage());
-                e.printStackTrace();
+                Log.logInfo("Unknown error: Message: " + e.getMessage());
+                Log.log(e);
             }
         } catch (PythonNatureWithoutProjectException e1) {
-            System.out.println("No project nature.");
-            e1.printStackTrace();
+            Log.logInfo("No project nature.");
+            Log.log(e1);
         }
     }
 
     private void setDefaultInterpreter(PythonNature nature) {
-        System.out.println("Setting default interpreter.");
+        Log.logInfo("Setting default interpreter.");
         IInterpreterManager pythonInterpreterManager = InterpreterManagersAPI.getPythonInterpreterManager();
         IInterpreterInfo projectInterpreter = pythonInterpreterManager.createInterpreterInfo(pythonBin,
                 new NullProgressMonitor(), false);
         projectInterpreter.setName(project.getName());
         pythonInterpreterManager.setInfos(new IInterpreterInfo[] { projectInterpreter }, null,
                 new NullProgressMonitor());
-        System.out.println("Configured!");
+        Log.logInfo("Configured!");
         try {
             nature.setVersion(PythonNature.PYTHON_VERSION_INTERPRETER, project.getName());
         } catch (CoreException e) {

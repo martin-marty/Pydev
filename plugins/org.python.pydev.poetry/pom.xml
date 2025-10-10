@@ -19,6 +19,7 @@
     <version>13.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+  <groupId>org.python.pydev</groupId>
   <artifactId>org.python.pydev.poetry</artifactId>
   <packaging>eclipse-plugin</packaging>
 </project>

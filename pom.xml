@@ -177,7 +177,6 @@
             <explodedBundle>org.python.pydev.help</explodedBundle>
             <explodedBundle>org.python.pydev.jython</explodedBundle>
             <explodedBundle>org.python.pydev.parser</explodedBundle>
-            <explodedBundle>org.python.pydev.poetry</explodedBundle>
             <explodedBundle>org.python.pydev.refactoring</explodedBundle>
             <explodedBundle>org.python.pydev.shared_core</explodedBundle>
             <explodedBundle>org.python.pydev.shared_interactive_console</explodedBundle>
