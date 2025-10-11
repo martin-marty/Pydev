@@ -19,29 +19,11 @@ import org.python.pydev.core.log.Log;
  * package_name`.
  */
 abstract public class BasePackageManager {
-    public enum Commands {
-        INSTALL("install"), ENV("env"), LOCK("lock"), SYNC("sync"), UPDATE("update");
-
-        private String command;
-
-        private Commands(String command) {
-            this.command = command;
-        }
-
-        public String command() {
-            return this.command;
-        }
-    }
 
     /**
      * Argument to use for changing to the project directory.
      */
     private String chDirArg;
-
-    /**
-     * Name of the task
-     */
-    protected String taskName;
 
     /**
      * Path to the project directory
