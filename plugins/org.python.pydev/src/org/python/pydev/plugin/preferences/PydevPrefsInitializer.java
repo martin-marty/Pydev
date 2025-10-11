@@ -292,6 +292,7 @@ public class PydevPrefsInitializer extends AbstractPreferenceInitializer {
         node.putBoolean(PydevRootPrefs.CHECK_PREFERRED_PYDEV_SETTINGS,
                 PydevRootPrefs.DEFAULT_CHECK_PREFERRED_PYDEV_SETTINGS);
         node.put(PydevRootPrefs.POETRY_BIN, PydevRootPrefs.getDefaultPoetryBinPreference());
+        node.put(PydevRootPrefs.UV_BIN, PydevRootPrefs.getDefaultUVBinPreference());
 
     }
 

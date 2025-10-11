@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.python.pydev.core.package_manager.PoetryPackageManager;
+import org.python.pydev.core.package_manager.UVPackageManager;
 import org.python.pydev.plugin.PydevPlugin;
 import org.python.pydev.plugin.preferences.CheckDefaultPreferencesDialog.CheckInfo;
 import org.python.pydev.shared_core.string.StringUtils;
@@ -28,6 +29,7 @@ public class PydevRootPrefs extends FieldEditorPreferencePage implements IWorkbe
     public static final String CHECK_PREFERRED_PYDEV_SETTINGS = "CHECK_PREFERRED_PYDEV_SETTINGS";
     public static final boolean DEFAULT_CHECK_PREFERRED_PYDEV_SETTINGS = true;
     public static final String POETRY_BIN = "POETRY_BIN";
+    public static final String UV_BIN = "UV_BIN";
 
     public PydevRootPrefs() {
         setDescription(StringUtils.format("PyDev version: %s",
@@ -68,6 +70,7 @@ public class PydevRootPrefs extends FieldEditorPreferencePage implements IWorkbe
             }
         }));
         addField(new FileFieldEditor(PoetryPackageManager.PREFS_NAME, "Poetry path", p));
+        addField(new FileFieldEditor(UVPackageManager.PREFS_NAME, "UV path", p));
     }
 
     public static void setCheckPreferredPydevSettings(boolean b) {
@@ -91,6 +94,21 @@ public class PydevRootPrefs extends FieldEditorPreferencePage implements IWorkbe
             path = System.getenv("HOME") + "/Library/Application Support/pypoetry";
         } else {
             path = System.getenv("HOME") + "/.local/share/pypoetry/venv/bin/poetry";
+        }
+        return path;
+    }
+
+    /**
+     * Gets the default UV install location.
+     * 
+     * @return The path to the uv bin
+     */
+    public static String getDefaultUVBinPreference() {
+        String path;
+        if (PlatformUtils.isWindowsPlatform()) {
+            path = System.getenv("APPDATA") + "\\bin\\uv";
+        } else {
+            path = System.getenv("HOME") + "/.local/bin/uv";
         }
         return path;
     }
