@@ -11,7 +11,7 @@ import org.python.pydev.ui.actions.container.PyPoetryAction;
 /**
  * 
  */
-public class PoetryRemoveAction extends PyPoetryAction {
+public class PoetryRemove extends PyPoetryAction {
 
     @Override
     protected String getTaskName() {
@@ -20,8 +20,8 @@ public class PoetryRemoveAction extends PyPoetryAction {
 
     @Override
     protected String runCommand() {
-        InputDialog dialog = new InputDialog(EditorUtils.getShell(), "App to install",
-                "Name of the python App to install", null, null);
+        InputDialog dialog = new InputDialog(EditorUtils.getShell(), "App to remove",
+                "Name of the python App to remove", null, null);
         int open = dialog.open();
         if (open != Window.OK) {
             return "";

@@ -10,26 +10,11 @@ public class PoetryPackageManager extends BasePackageManager {
         super(projectRoot, "poetry", PREFS_NAME, "-C");
     }
 
-    @Override
-    protected ArrayList<String> getCommandArgs(String args) {
-        ArrayList<String> parsedArgs = new ArrayList<String>();
-        parsedArgs.add(args);
-        return parsedArgs;
-    }
-
-    @Override
-    protected ArrayList<String> getCommandArgs(String[] args) {
-        ArrayList<String> parsedArgs = new ArrayList<String>();
-        for (String arg : args) {
-            parsedArgs.add(arg);
-        }
-        return parsedArgs;
-    }
-
     public String install() {
         return runCommand(getCommandArgs("install"));
     }
 
+    @Override
     public String add(String appName) {
         ArrayList<String> args = getCommandArgs("add");
         String[] apps = appName.split(" ");
@@ -39,24 +24,8 @@ public class PoetryPackageManager extends BasePackageManager {
         return runCommand(args);
     }
 
-    public String lock() {
-        return runCommand(getCommandArgs("lock"));
-    }
-
-    public String sync() {
-        return runCommand(getCommandArgs("sync"));
-    }
-
     public String update() {
         return runCommand(getCommandArgs("update"));
-    }
-
-    public String remove(String appName) {
-        ArrayList<String> args = getCommandArgs("remove");
-        for (String app : appName.split(" ")) {
-            args.add(app);
-        }
-        return runCommand(args);
     }
 
     /**
@@ -70,5 +39,4 @@ public class PoetryPackageManager extends BasePackageManager {
         }
         return pythonPath;
     }
-
 }

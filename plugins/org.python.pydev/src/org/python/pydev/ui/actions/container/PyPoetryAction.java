@@ -35,10 +35,14 @@ public abstract class PyPoetryAction extends PyContainerAction {
             return 0;
         }
         monitor.beginTask(getTaskName(), 100);
+        monitor.worked(1);
         IProject project = container.getProject();
         pm = new PoetryPackageManager(project.getLocation().toString());
         String result = runCommand();
         int affected = 1;
+        if (monitor.isCanceled()) {
+            return 0;
+        }
         monitor.worked(50);
         if (!Objects.equals(result, "")) {
             try {

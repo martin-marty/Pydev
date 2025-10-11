@@ -80,16 +80,49 @@ abstract public class BasePackageManager {
     private Boolean checkError() {
         if (errorMsg != null) {
             Log.log(errorTitle + "\n" + errorMsg);
-            // Shell shell = UIUtils.getActiveShell();
-            // MessageDialog.openError(shell, errorTitle, errorMsg);
             return false;
         }
         return true;
     }
 
-    abstract protected ArrayList<String> getCommandArgs(String args);
+    protected ArrayList<String> getCommandArgs(String args) {
+        ArrayList<String> parsedArgs = new ArrayList<String>();
+        parsedArgs.add(args);
+        return parsedArgs;
+    }
 
-    abstract protected ArrayList<String> getCommandArgs(String[] args);
+    protected ArrayList<String> getCommandArgs(String[] args) {
+        ArrayList<String> parsedArgs = new ArrayList<String>();
+        for (String arg : args) {
+            parsedArgs.add(arg);
+        }
+        return parsedArgs;
+    }
+
+    public String add(String appName) {
+        ArrayList<String> args = getCommandArgs("add");
+        String[] apps = appName.split(" ");
+        for (String app : apps) {
+            args.add(app);
+        }
+        return runCommand(args);
+    }
+
+    public String lock() {
+        return runCommand(getCommandArgs("lock"));
+    }
+
+    public String sync() {
+        return runCommand(getCommandArgs("sync"));
+    }
+
+    public String remove(String appName) {
+        ArrayList<String> args = getCommandArgs("remove");
+        for (String app : appName.split(" ")) {
+            args.add(app);
+        }
+        return runCommand(args);
+    }
 
     /**
      * Returns the output of running `poetry args...`

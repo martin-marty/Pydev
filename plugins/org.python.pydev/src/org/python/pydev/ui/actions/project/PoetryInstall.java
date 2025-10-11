@@ -24,7 +24,7 @@ import org.python.pydev.plugin.nature.PythonNature;
 import org.python.pydev.shared_ui.EditorUtils;
 import org.python.pydev.ui.actions.container.PyContainerAction;
 
-public class PoetryInstallAction extends PyContainerAction {
+public class PoetryInstall extends PyContainerAction {
     private IPath absPath;
     private IProject project;
     private String pythonBin;
@@ -77,7 +77,6 @@ public class PoetryInstallAction extends PyContainerAction {
         try {
             project.refreshLocal(1, monitor);
         } catch (CoreException e) {
-            // TODO Auto-generated catch block
             Log.log(e);
         }
         monitor.worked(100);

@@ -11,7 +11,7 @@ import org.python.pydev.ui.actions.container.PyPoetryAction;
 /**
  * 
  */
-public class PoetryAddAction extends PyPoetryAction {
+public class PoetryAdd extends PyPoetryAction {
 
     @Override
     protected String getTaskName() {
