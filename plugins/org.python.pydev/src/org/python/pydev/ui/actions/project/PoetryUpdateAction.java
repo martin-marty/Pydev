@@ -1,17 +1,22 @@
+/**
+ * 
+ */
 package org.python.pydev.ui.actions.project;
 
 import org.python.pydev.ui.actions.container.PyPoetryAction;
 
-public class PoetryLock extends PyPoetryAction {
+/**
+ * 
+ */
+public class PoetryUpdateAction extends PyPoetryAction {
 
     @Override
     protected String getTaskName() {
-        return "Locking project dependencies...";
+        return "Updating python packages...";
     }
 
     @Override
     protected String runCommand() {
-        return pm.lock();
+        return pm.update();
     }
-
 }

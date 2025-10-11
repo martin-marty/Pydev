@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.python.pydev.core.package_manager.PoetryPackageManager;
 import org.python.pydev.plugin.PydevPlugin;
 import org.python.pydev.plugin.preferences.CheckDefaultPreferencesDialog.CheckInfo;
 import org.python.pydev.shared_core.string.StringUtils;
@@ -66,7 +67,7 @@ public class PydevRootPrefs extends FieldEditorPreferencePage implements IWorkbe
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         }));
-        addField(new FileFieldEditor(POETRY_BIN, "Poetry path", p));
+        addField(new FileFieldEditor(PoetryPackageManager.PREFS_NAME, "Poetry path", p));
     }
 
     public static void setCheckPreferredPydevSettings(boolean b) {

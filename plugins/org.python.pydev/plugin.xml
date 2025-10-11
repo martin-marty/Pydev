@@ -156,6 +156,22 @@
                    tooltip="Locks the project dependencies">
              </action>
              <action
+                   class="org.python.pydev.ui.actions.project.PoetryUpdateAction"
+                   enablesFor="1"
+                   id="org.python.pydev.ui.actions.project.poetryUpdateAction"
+                   label="Poetry update"
+                   menubarPath="org.python.pydev.poetry.ui.poetry.menu/misc"
+                   tooltip="Update the dependencies as according to the pyproject.toml file">
+             </action>
+             <action
+                   class="org.python.pydev.ui.actions.project.PoetryRemoveAction"
+                   enablesFor="1"
+                   id="org.python.pydev.ui.actions.project.poetryRemoveAction"
+                   label="Poetry remove"
+                   menubarPath="org.python.pydev.poetry.ui.poetry.menu/misc"
+                   tooltip="Removes a package from the project dependencies">
+             </action>
+             <action
                    class="org.python.pydev.ui.actions.project.PoetryAddAction"
                    enablesFor="1"
                    id="org.python.pydev.ui.actions.project.poetryAddAction"

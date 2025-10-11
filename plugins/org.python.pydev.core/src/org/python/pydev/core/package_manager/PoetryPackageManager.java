@@ -3,7 +3,7 @@ package org.python.pydev.core.package_manager;
 import java.util.ArrayList;
 
 public class PoetryPackageManager extends BasePackageManager {
-    final private static String PREFS_NAME = "POETRY_BIN";
+    final public static String PREFS_NAME = "POETRY_BIN";
     private String pythonPath;
 
     public PoetryPackageManager(String projectRoot) {
@@ -45,6 +45,18 @@ public class PoetryPackageManager extends BasePackageManager {
 
     public String sync() {
         return runCommand(getCommandArgs("sync"));
+    }
+
+    public String update() {
+        return runCommand(getCommandArgs("update"));
+    }
+
+    public String remove(String appName) {
+        ArrayList<String> args = getCommandArgs("remove");
+        for (String app : appName.split(" ")) {
+            args.add(app);
+        }
+        return runCommand(args);
     }
 
     /**

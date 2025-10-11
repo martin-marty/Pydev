@@ -119,7 +119,6 @@ abstract public class BasePackageManager {
             p = pb.start();
             output = new String(p.getInputStream().readAllBytes()).strip();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             Log.log(e);
         }
 

@@ -11,11 +11,11 @@ import org.python.pydev.ui.actions.container.PyPoetryAction;
 /**
  * 
  */
-public class PoetryAddAction extends PyPoetryAction {
+public class PoetryRemoveAction extends PyPoetryAction {
 
     @Override
     protected String getTaskName() {
-        return "Installing python package...";
+        return "Removing python package...";
     }
 
     @Override
@@ -27,7 +27,6 @@ public class PoetryAddAction extends PyPoetryAction {
             return "";
         }
         String appName = dialog.getValue();
-        return pm.add(appName);
+        return pm.remove(appName);
     }
-
 }

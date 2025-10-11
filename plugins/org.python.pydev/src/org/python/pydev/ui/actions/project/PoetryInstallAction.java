@@ -31,6 +31,13 @@ public class PoetryInstallAction extends PyContainerAction {
 
     @Override
     protected boolean confirmRun() {
+        // TODO Figure out why the monitor doesn't progress until a dialog is displayed then use the below.
+        //        MessageDialog confirm = new MessageDialog(EditorUtils.getShell(), "Install using poetry", null,
+        //                "This will install using...", MessageDialog.QUESTION_WITH_CANCEL, 0, new String[] { "OK", "Cancel" });
+        //        confirm.open();
+        //        if (confirm.getReturnCode() == 1) {
+        //            return false;
+        //        }
         return true;
     }
 
@@ -66,6 +73,14 @@ public class PoetryInstallAction extends PyContainerAction {
         } else {
             setInterpreter(nature);
         }
+        monitor.worked(75);
+        try {
+            project.refreshLocal(1, monitor);
+        } catch (CoreException e) {
+            // TODO Auto-generated catch block
+            Log.log(e);
+        }
+        monitor.worked(100);
         monitor.done();
         return 0;
     }
