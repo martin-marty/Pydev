@@ -49,6 +49,18 @@ public class PythonFileRunner {
         }
     }
 
+    public static ILaunch launch(IFile file, String arguments, boolean debug) throws CoreException {
+        if (!debug) {
+            return launch(file, arguments);
+        }
+        try {
+            ILaunchConfiguration conf = getLaunchConfiguration(file, arguments);
+            return conf.launch(ILaunchManager.DEBUG_MODE, null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static ILaunchConfigurationWorkingCopy getLaunchConfiguration(IFile resource, String programArguments)
             throws CoreException, MisconfigurationException, PythonNatureWithoutProjectException {
         String vmargs = ""; // Not sure if it should be a parameter or not

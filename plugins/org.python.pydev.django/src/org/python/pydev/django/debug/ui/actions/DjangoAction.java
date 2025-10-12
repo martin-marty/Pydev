@@ -49,6 +49,7 @@ import org.python.pydev.shared_ui.EditorUtils;
  */
 public abstract class DjangoAction implements IObjectActionDelegate {
 
+    private boolean debug;
     /**
      * The project that was selected (may be null).
      */
@@ -87,6 +88,14 @@ public abstract class DjangoAction implements IObjectActionDelegate {
 
     public void setSelectedProject(IProject selectedProject) {
         this.selectedProject = selectedProject;
+    }
+
+    /**
+     * May be used to run some command that uses the manage.py file.
+     */
+    public ILaunch launchDjangoCommand(final String command, boolean refreshAndShowMessageOnFinish, boolean debug) {
+        this.debug = debug;
+        return launchDjangoCommand(command, refreshAndShowMessageOnFinish);
     }
 
     /**
@@ -135,7 +144,7 @@ public abstract class DjangoAction implements IObjectActionDelegate {
         }
         final IFile finalManageDotPy = manageDotPy;
         try {
-            ILaunch launch = PythonFileRunner.launch(manageDotPy, command);
+            ILaunch launch = PythonFileRunner.launch(manageDotPy, command, debug);
 
             //After the command completes, refresh and put message for user.
             final IProcess[] processes = launch.getProcesses();

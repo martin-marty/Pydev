@@ -176,14 +176,22 @@
 	               menubarPath="org.python.pydev.django.ui.django.menu/common"
 	               tooltip="Migrate database Django &#62;= 1.7">
 	         </action>
-	         <action
-	               class="org.python.pydev.django.debug.ui.actions.DjangoMakeMigrations"
-	               enablesFor="+"
-	               id="org.python.pydev.django.debug.ui.actions.project.djangoMakeMigrations"
-	               label="Make Migrations (Django &#62;= 1.7) (manage.py makemigrations)"
-	               menubarPath="org.python.pydev.django.ui.django.menu/common"
-	               tooltip="Make database migrations Django &#62;= 1.7">
-	         </action>
+             <action
+                   class="org.python.pydev.django.debug.ui.actions.DjangoMakeMigrations"
+                   enablesFor="+"
+                   id="org.python.pydev.django.debug.ui.actions.project.djangoMakeMigrations"
+                   label="Make Migrations (Django &#62;= 1.7) (manage.py makemigrations)"
+                   menubarPath="org.python.pydev.django.ui.django.menu/common"
+                   tooltip="Make database migrations Django &#62;= 1.7">
+             </action>
+             <action
+                   class="org.python.pydev.django.debug.ui.actions.DjangoRunServer"
+                   enablesFor="+"
+                   id="org.python.pydev.django.debug.ui.actions.djangoRunServer"
+                   label="Run server (manage.py runserver)"
+                   menubarPath="org.python.pydev.django.ui.django.menu/common"
+                   tooltip="Run the development server">
+             </action>
 	         <action
 	               class="org.python.pydev.django.debug.ui.actions.DjangoCustomCommand"
 	               enablesFor="+"
