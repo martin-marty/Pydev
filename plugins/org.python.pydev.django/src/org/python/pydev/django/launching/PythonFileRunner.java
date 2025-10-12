@@ -77,6 +77,9 @@ public class PythonFileRunner {
         String location = resource.getLocation().toString();
         String name = manager.generateUniqueLaunchConfigurationNameFrom(resource.getName());
         String baseDirectory = new File(location).getParent();
+        if (programArguments.equals("test") && baseDirectory.endsWith("/src")) {
+            baseDirectory = new File(baseDirectory).getParent();
+        }
         int resourceType = IResource.FILE;
 
         ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, name);

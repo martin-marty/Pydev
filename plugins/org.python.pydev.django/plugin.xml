@@ -152,14 +152,22 @@
 	               menubarPath="org.python.pydev.django.ui.django.menu/common"
 	               tooltip="Run Python Interactive Interpreter">
 	         </action>
-	         <action
-	               class="org.python.pydev.django.debug.ui.actions.DjangoTestAction"
-	               enablesFor="+"
-	               id="org.python.pydev.django.debug.ui.actions.project.djangoTest"
-	               label="Run Django Tests (manage.py test)"
-	               menubarPath="org.python.pydev.django.ui.django.menu/common"
-	               tooltip="Run Django Tests">
-	         </action>
+             <action
+                   class="org.python.pydev.django.debug.ui.actions.DjangoTestDebugAction"
+                   enablesFor="+"
+                   id="org.python.pydev.django.debug.ui.actions.project.djangoTestDebug"
+                   label="Debug Django Tests (manage.py test)"
+                   menubarPath="org.python.pydev.django.ui.django.menu/common"
+                   tooltip="Debug Django Tests">
+             </action>
+             <action
+                   class="org.python.pydev.django.debug.ui.actions.DjangoTestAction"
+                   enablesFor="+"
+                   id="org.python.pydev.django.debug.ui.actions.project.djangoTest"
+                   label="Run Django Tests (manage.py test)"
+                   menubarPath="org.python.pydev.django.ui.django.menu/common"
+                   tooltip="Run Django Tests">
+             </action>
 	         <action
 	               class="org.python.pydev.django.debug.ui.actions.DjangoSyncDB"
 	               enablesFor="+"
