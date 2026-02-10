@@ -10,6 +10,8 @@ package org.python.pydev.core.package_manager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
 import org.python.pydev.core.log.Log;
@@ -19,11 +21,29 @@ import org.python.pydev.core.log.Log;
  * package_name`.
  */
 abstract public class BasePackageManager {
+    public enum Commands {
+        INSTALL("install"), ENV("env"), LOCK("lock"), SYNC("sync"), UPDATE("update");
+
+        private String command;
+
+        private Commands(String command) {
+            this.command = command;
+        }
+
+        public String command() {
+            return this.command;
+        }
+    }
 
     /**
      * Argument to use for changing to the project directory.
      */
     private String chDirArg;
+
+    /**
+     * Name of the task
+     */
+    protected String taskName;
 
     /**
      * Path to the project directory
@@ -68,9 +88,7 @@ abstract public class BasePackageManager {
     }
 
     protected ArrayList<String> getCommandArgs(String args) {
-        ArrayList<String> parsedArgs = new ArrayList<String>();
-        parsedArgs.add(args);
-        return parsedArgs;
+        return new ArrayList<String>(Arrays.asList(args));
     }
 
     protected ArrayList<String> getCommandArgs(String[] args) {
@@ -82,7 +100,7 @@ abstract public class BasePackageManager {
     }
 
     public String add(String appName) {
-        ArrayList<String> args = getCommandArgs("add");
+        List<String> args = getCommandArgs("add");
         String[] apps = appName.split(" ");
         for (String app : apps) {
             args.add(app);
@@ -99,7 +117,7 @@ abstract public class BasePackageManager {
     }
 
     public String remove(String appName) {
-        ArrayList<String> args = getCommandArgs("remove");
+        List<String> args = getCommandArgs("remove");
         for (String app : appName.split(" ")) {
             args.add(app);
         }
@@ -112,7 +130,7 @@ abstract public class BasePackageManager {
      * @param args List of arguments to pass to binPath e.g. "[poetry] env info"
      * @return The command output
      */
-    public String runCommand(ArrayList<String> args) {
+    public String runCommand(List<String> args) {
         String output = null;
         if (!checkError()) {
             return output;
